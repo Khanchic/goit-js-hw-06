@@ -14,13 +14,10 @@ const images = [
 ];
 
 const list = document.querySelector(".gallery");
-let image = "";
-images.forEach((img) => {
-  image = images
-    .map(
-      (img) =>
-        `<li class="gallery__item"><img class="gallery__img" src="${img.url}" alt="${img.alt}"></li>`
-    )
-    .join("");
-});
+let image = images
+  .map(
+    (img) =>
+      `<li class="gallery__item"><img class="gallery__img" src="${img.url}" alt="${img.alt}"></li>`
+  )
+  .join("");
 list.insertAdjacentHTML("afterbegin", image);

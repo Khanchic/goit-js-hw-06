@@ -1,21 +1,28 @@
-const formRef = document.querySelector(".login-form");
+const loginForm = document.querySelector(".login-form");
 
-formRef.addEventListener("submit", onFormSubmit);
-
-const userData = {
-  email: "",
-  password: "",
-};
-function onFormSubmit(event) {
+const doneSubmit = (event) => {
   event.preventDefault();
-  const email = event.currentTarget.elements.email.value;
-  const passWord = event.currentTarget.elements.password.value;
-  if (email === "" || passWord === "") {
-    alert("please be a human");
+  const {
+    elements: { email, password },
+  } = event.currentTarget;
+  if (email.value === "") {
+    if (password.value === "") {
+      alert("Ошибка! Поля Email и Password не заполнены!");
+      return;
+    } else {
+      alert("Ошибка! Поле Email не заполнено!");
+      return;
+    }
   } else {
-    userData.email = email;
-    userData.password = passWord;
-    formRef.reset();
+    if (password.value === "") {
+      alert("Ошибка! Поле Password не заполнено!");
+      return;
+    } else {
+      const loginFields = { email: email.value, password: password.value };
+      console.log(loginFields);
+    }
   }
-}
-console.log(onFormSubmit);
+  event.currentTarget.reset();
+};
+
+loginForm.addEventListener("submit", doneSubmit);
